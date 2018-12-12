@@ -1,0 +1,26 @@
+{
+  "name": "geospatial-indexing-dynamodb",
+  "version": "1.0.0",
+  "description": "Example API for searching a geospatial index by radius.",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djmeph/geospatial-indexing-dynamodb.git"
+  },
+  "keywords": [
+    "geospatial",
+    "index",
+    "dynamodb",
+    "nodejs",
+    "express"
+  ],
+  "author": "Norman Witte III",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/djmeph/geospatial-indexing-dynamodb/issues"
+  },
+  "homepage": "https://github.com/djmeph/geospatial-indexing-dynamodb#readme"
+}
