@@ -1,14 +1,13 @@
 const { Geolocation } = require('../services');
 
 module.exports = {
-    method: 'get',
+    method: 'post',
     endpoint: '/geospatial-search-radius',
     middleware: [async (req, res, next) => {
 
         try {
 
             const matches = await Geolocation.GeoSearch(req.body);
-
             req.data = { status: 200, result: matches };
             next();
 
