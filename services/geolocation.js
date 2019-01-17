@@ -33,8 +33,7 @@ function GeoSearch (data) {
             };
             const inBox = await dynamoDb.scan(params).promise();
             const result = filter(inBox.Items, item => {
-                const distance = IsInside(data.coordinates, [item.latitude, item.longitude]);
-                return distance <= data.distance;
+                return IsInside(data.coordinates, [item.latitude, item.longitude], data.distance);
             });
             resolve(result);
         } catch (err) { reject(err) }
@@ -51,7 +50,7 @@ function MapCircle (coord, brng, dist) {
     return [lon2.toDeg(), lat2.toDeg()];
 };
 
-function IsInside (coords1, coords2) {
+function IsInside (coords1, coords2, searchRadius) {
     var R = 3958.748;
     var dLat = (coords2[0]-coords1[0]).toRad();
     var dLon = (coords2[1]-coords1[1]).toRad();
@@ -61,7 +60,7 @@ function IsInside (coords1, coords2) {
     Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     var d = R * c;
-    return d;
+    return d <= searchRadius;
 };
 
 module.exports = service;
